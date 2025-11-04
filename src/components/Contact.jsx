@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import { cn } from "../lib/utils";
 import { SnackbarProvider, enqueueSnackbar } from "notistack";
+import Map from "./Map";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,13 +97,13 @@ const Contact = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
-                <div className="text-start">
-                  <h4 className="font-medium">Location</h4>
-                  <p>Lagos</p>
+                <div className="text-start w-full">
+                  <h4 className="font-medium mb-2">Location</h4>
+                  <Map/>
                 </div>
               </div>
             </div>
-            <div className="hidden md:flex flex-col pt-4 justify-items-start p-4 ">
+            <div className="hidden md:flex flex-col pt-4 justify-center items-center p-4 ">
               <h4 className=" py-4 text-start width-full">Connect with us</h4>
               <div className="flex space-x-4">
                 <a target="_blank" href="www.linkedin.com">
