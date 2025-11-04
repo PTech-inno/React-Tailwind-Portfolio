@@ -14,18 +14,36 @@ import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleFormChange = (e) => {
+    const formInput = {
+      ...formData,
+      [e.target.name]: e.target.value,
+    };
+    setFormData(formInput);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    // console.log(formData);
 
     setTimeout(() => {
       enqueueSnackbar(
         "Thank you for your message. We will get back to you soon."
       );
-       setIsSubmitting(false);
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setIsSubmitting(false);
     }, 1500);
-
-   
   };
 
   return (
@@ -50,7 +68,7 @@ const Contact = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
-                <div>
+                <div className="text-start">
                   <h4 className="font-medium">Email</h4>
                   <a
                     href="mailto:manthemanmr@gmail.com"
@@ -64,7 +82,7 @@ const Contact = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
-                <div>
+                <div className="text-start">
                   <h4 className="font-medium">Phone</h4>
                   <a
                     href="tel:2348065611409"
@@ -78,27 +96,25 @@ const Contact = () => {
                 <div className="p-3 rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
-                <div>
+                <div className="text-start">
                   <h4 className="font-medium">Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Lagos
-                  </a>
+                  <p>Lagos</p>
                 </div>
               </div>
             </div>
             <div className="hidden md:flex flex-col pt-4 justify-items-start p-4 ">
               <h4 className=" py-4 text-start width-full">Connect with us</h4>
               <div className="flex space-x-4">
-                <a target="_blank" href="#">
+                <a target="_blank" href="www.linkedin.com">
                   <Linkedin />
                 </a>
-                <a target="_blank" href="#">
+                <a target="_blank" href="www.x.com">
                   <X />
                 </a>
-                <a target="_blank" href="#">
+                <a target="_blank" href="www.facebook.com">
                   <Facebook />
                 </a>
-                <a target="_blank" href="#">
+                <a target="_blank" href="www.instagram.com">
                   <Instagram />
                 </a>
               </div>
@@ -115,9 +131,12 @@ const Contact = () => {
                   Your Name
                 </label>
                 <input
+                  value={formData.name}
+                  onChange={handleFormChange}
                   type="text"
                   id="name"
                   name="name"
+                  autoComplete="given-name"
                   required
                   className="w-full p-2 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="Enter your name"
@@ -131,10 +150,13 @@ const Contact = () => {
                   Your Email
                 </label>
                 <input
+                  value={formData.email}
+                  onChange={handleFormChange}
                   type="email"
                   id="email"
                   name="email"
                   required
+                  autoComplete="email"
                   className="w-full p-2 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="Enter your email"
                 />
@@ -147,6 +169,8 @@ const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  value={formData.message}
+                  onChange={handleFormChange}
                   id="message"
                   name="message"
                   required
@@ -173,16 +197,16 @@ const Contact = () => {
         <div className="pt-8 md:hidden">
           <h4 className="p-4">Connect with us</h4>
           <div className="flex space-x-4 justify-center">
-            <a target="_blank" href="#">
+            <a target="_blank" href="www.linkedin.com">
               <Linkedin />
             </a>
-            <a target="_blank" href="#">
+            <a target="_blank" href="www.x.com">
               <X />
             </a>
-            <a target="_blank" href="#">
+            <a target="_blank" href="www.facebook.com">
               <Facebook />
             </a>
-            <a target="_blank" href="#">
+            <a target="_blank" href="www.instagram.com">
               <Instagram />
             </a>
           </div>

@@ -2,7 +2,7 @@ import { ArrowBigDown } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 const HeroSection = () => {
-  const [arrowDisplay, setArrowDisplay] = useState(true);
+  const [arrowDisplay, setArrowDisplay] = useState(false);
 
   useEffect(() => {
     const handleArrowDown = () => {
@@ -10,6 +10,7 @@ const HeroSection = () => {
     };
 
     window.addEventListener("scroll", handleArrowDown);
+    return () => window.removeEventListener('scroll', handleArrowDown)
   }, [arrowDisplay]);
 
   return (
