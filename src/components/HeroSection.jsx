@@ -1,7 +1,17 @@
 import { ArrowBigDown } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const HeroSection = () => {
+  const [arrowDisplay, setArrowDisplay] = useState(true);
+
+  useEffect(() => {
+    const handleArrowDown = () => {
+      setArrowDisplay(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleArrowDown);
+  }, [arrowDisplay]);
+
   return (
     <section
       id="hero"
@@ -41,11 +51,14 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce ">
-        <span className="text-sm text-muted-foreground ">Scroll</span>
-         <ArrowBigDown className="h-5 w-5 text-primary" />
-      </div>
-     
+      {arrowDisplay ? (
+        ""
+      ) : (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce ">
+          <span className="text-sm text-muted-foreground ">Scroll</span>
+          <ArrowBigDown className="h-5 w-5 text-primary" />
+        </div>
+      )}
     </section>
   );
 };

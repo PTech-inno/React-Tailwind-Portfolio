@@ -25,8 +25,8 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed w-full z-900 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdropblur-md shadow-xs " : "py-5 bg-background"
+        "bg-background fixed w-full z-900",
+        isScrolled ? "py-3 shadow-xs backdrop-blur-md " : "py-5  "
       )}
     >
       <div className="container flex items-center justify-between md:justify-around">
@@ -34,14 +34,15 @@ const Navbar = () => {
           href="#hero"
           className="text-xl font-bold text-primary flex items-center p-1 "
         >
-          <span className="relative z-100 "> 
+          <span className="relative z-100 ">
             <span className="text-glow text-foreground">PTech {"  "}</span>{" "}
             Innovations
-              <p style={{fontSize: "6px"}} className="text-foreground">Brilliant minds, alive with ideas</p>
+            <p style={{ fontSize: "6px" }} className="text-foreground">
+              Brilliant minds, alive with ideas.
+            </p>
           </span>
-          
         </a>
-      
+
         {/* desktop */}
 
         <div className="hidden md:flex space-x-8">
@@ -59,7 +60,7 @@ const Navbar = () => {
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
-          aria-label={isMenuOpen ? 'Close Menu' : 'Open Menu'}
+          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
